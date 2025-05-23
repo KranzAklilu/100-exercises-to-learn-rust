@@ -1,6 +1,13 @@
 // TODO: Define a function named `sum` that takes a reference to a slice of `u32` and returns the sum of all
 //  elements in the slice.
 
+fn sum<'a, T>(v: T) -> u32
+where
+    T: IntoIterator<Item = &'a u32, IntoIter = std::slice::Iter<'a, u32>>,
+{
+    v.into_iter().sum()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
